@@ -4,6 +4,19 @@
   clear:both;
 }
 
+.navbar {
+  min-height: 40px;
+  border-radius:0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;  
+}
+
+.navbar-default {
+  background: transparent;
+  border: 0;
+  margin-bottom: 0;
+}
+
 h1 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
