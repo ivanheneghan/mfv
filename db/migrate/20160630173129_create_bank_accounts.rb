@@ -7,6 +7,7 @@ class CreateBankAccounts < ActiveRecord::Migration
       t.string :type
       t.float :amount
       t.integer :interest_rate
+      t.references :user
 
       t.timestamps
     end
