@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <%= @bank_account.name %><br /><br />        
+  <%= @bank_account.institution %><br /><br />
+  <%= @bank_account.account_type %><br /><br />
+  <%= @bank_account.amount %><br /><br />
+  <%= @bank_account.interest_rate %><br /><br />
+  <%= link_to 'Edit', edit_bank_account_path(@bank_account), class: 'btn btn-primary' %>
+  <%= link_to 'Destroy', bank_account_path(@bank_account), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %>
+</div>
 
-<%= link_to 'Edit', edit_bank_account_path(@bank_account) %> |
-<%= link_to 'Back', bank_accounts_path %>
+

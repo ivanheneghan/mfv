@@ -10,7 +10,7 @@ class BankAccountsController < ApplicationController
   end
 
   def show
-    respond_with(@bank_account)
+    set_bank_account
   end
 
   def new
@@ -19,21 +19,23 @@ class BankAccountsController < ApplicationController
   end
 
   def edit
+    set_bank_account
   end
 
-  def create
-    current_user.bank_accounts.create(bank_account_params)
+  def create    
     @bank_account = BankAccount.new(bank_account_params)
     @bank_account.save
-    respond_with(@bank_account)
+    respond_with(@bank_account)    
   end
 
   def update
+    set_bank_account
     @bank_account.update(bank_account_params)
     respond_with(@bank_account)
   end
 
   def destroy
+    set_bank_account
     @bank_account.destroy
     respond_with(@bank_account)
   end
@@ -44,6 +46,6 @@ class BankAccountsController < ApplicationController
     end
 
     def bank_account_params
-      params[:bank_account]
+      params.require(:bank_account).permit(:name, :institution, :account_type, :amount, :interest_rate)
     end
 end

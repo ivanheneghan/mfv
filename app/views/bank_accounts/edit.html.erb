@@ -1,6 +1,12 @@
-<h1>Editing bank_account</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @bank_account %> |
-<%= link_to 'Back', bank_accounts_path %>
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <h1>Edit Your Bank Account Details</h1>
+  <%= simple_form_for @bank_account do |f| %>
+    <%= f.input :name %>
+    <%= f.input :institution %>    
+    <%= f.input :account_type %>
+    <%= f.input :amount %>
+    <%= f.input :interest_rate %>
+    <br /> 
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
+</div>

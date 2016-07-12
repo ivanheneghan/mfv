@@ -1,25 +1,14 @@
-<h1>Listing bank_accounts</h1>
+<h1>Manage Bank Accounts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bank_accounts.each do |bank_account| %>
-      <tr>
-        <td><%= link_to 'Show', bank_account %></td>
-        <td><%= link_to 'Edit', edit_bank_account_path(bank_account) %></td>
-        <td><%= link_to 'Destroy', bank_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+  <% @bank_accounts.each do |bank_account| %>
+    <div class="booyah-box col-xs-10 col-xs-offset-1">
+      <%= link_to bank_account.name, bank_account_path(bank_account) %><br /><br />        
+      <%= bank_account.institution %><br /><br />
+      <%= bank_account.account_type %><br /><br />
+      <%= bank_account.amount %><br /><br />
+      <%= bank_account.interest_rate %>
+    </div>
+    <hr />
+  <% end %>
 
 <%= link_to 'New Bank account', new_bank_account_path %>
