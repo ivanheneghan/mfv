@@ -1,4 +1,6 @@
 Mfv::Application.routes.draw do
+  resources :bank_accounts
+
   devise_for :users
   root 'overview#index'
 

@@ -1,0 +1,13 @@
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <h1>Enter Your Bank Account Details</h1>
+  <%= simple_form_for @bank_account do |f| %>
+    <%= f.input :name %>
+    <%= f.input :institution %>
+    <%= f.input :institution %>
+    <%= f.input :type %>
+    <%= f.input :amount %>
+    <%= f.input :interest_rate %>
+    <br /> 
+    <%= f.submit 'Create', class: 'btn btn-primary' %>
+  <% end %>
+</div>
