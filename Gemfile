@@ -56,3 +56,6 @@ gem 'simple_form'
 
 # Use Devise
 gem 'devise', '>= 3.2.4'
+
+# Use stock_quote
+gem 'stock_quote'

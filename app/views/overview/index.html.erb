@@ -1,9 +1,13 @@
-<div class="booyah-box col-xs-10 col-xs-offset-1">  
+<div class="booyah-box col-xs-10 col-xs-offset-1">
   Current value: <%= number_to_currency(current_user.bank_accounts.sum("amount"), :unit => "€")%>
   <br />
   Future value (not including inflation):
   <br />
   Future value (including inflation):
+  <br /><br /><br />
+
+  <% stock = StockQuote::Stock.quote("fb") %>
+  <%= stock.ask %>
   <br /><br /><br />
 
   <%= link_to 'Manage Bank Accounts', bank_accounts_path, :class => "btn btn-primary btn-md" %>
