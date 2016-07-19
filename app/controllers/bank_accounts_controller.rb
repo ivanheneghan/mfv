@@ -20,9 +20,8 @@ class BankAccountsController < ApplicationController
   end
 
   def create        
-    current_user.bank_accounts.create(bank_account_params)
-    if @bank_account.valid?
-      redirect_to root_path
+    if current_user.bank_accounts.create(bank_account_params)
+      redirect_to bank_accounts_path
     else
       render :new, status: :unprocessable_entity
     end    
@@ -32,9 +31,9 @@ class BankAccountsController < ApplicationController
     if @bank_account.user != current_user
       return render text: 'Not Allowed', status: :forbidden
     end
-    @bank_account.update(bank_account_params)
-    if @bank_account.valid?
-      redirect_to root_path
+    
+    if @bank_account.update(bank_account_params)
+      redirect_to bank_accounts_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +43,11 @@ class BankAccountsController < ApplicationController
     if @bank_account.user != current_user
       return render text: 'Not Allowed', status: :forbidden
     end 
-    @bank_account.destroy
+    if @bank_account.destroy
+      redirect_to bank_accounts_path
+    else
+      redirect_to bank_account_path(@bank_account)
+    end
   end
 
   private

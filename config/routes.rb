@@ -2,7 +2,9 @@ Mfv::Application.routes.draw do
   resources :bank_accounts
 
   devise_for :users
-  root 'overview#index'
+  root 'static_pages#index'
+
+  resource :overview
 
   resources :bank_accounts  
   # The priority is based upon order of creation: first created -> highest priority.
