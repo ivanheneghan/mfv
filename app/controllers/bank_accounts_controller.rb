@@ -1,43 +1,50 @@
 class BankAccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create]
-
+  
   respond_to :html
 
   def index
-    @bank_accounts = BankAccount.all
+    @bank_accounts = current_user.bank_accounts
     respond_with(@bank_accounts)
   end
 
   def show
-    set_bank_account
   end
 
   def new
     @bank_account = BankAccount.new
-    respond_with(@bank_account)
   end
 
   def edit
-    set_bank_account
   end
 
-  def create    
-    @bank_account = BankAccount.new(bank_account_params)
-    @bank_account.save
-    respond_with(@bank_account)    
+  def create        
+    current_user.bank_accounts.create(bank_account_params)
+    if @bank_account.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end    
   end
 
   def update
-    set_bank_account
+    if @bank_account.user != current_user
+      return render text: 'Not Allowed', status: :forbidden
+    end
     @bank_account.update(bank_account_params)
-    respond_with(@bank_account)
+    if @bank_account.valid?
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    set_bank_account
+    if @bank_account.user != current_user
+      return render text: 'Not Allowed', status: :forbidden
+    end 
     @bank_account.destroy
-    respond_with(@bank_account)
   end
 
   private
