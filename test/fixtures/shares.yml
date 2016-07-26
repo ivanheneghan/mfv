@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  share_id: 1
+  name: MyString
+  company: MyString
+  share_price: 1.5
+  volume: 1
+
+two:
+  share_id: 1
+  name: MyString
+  company: MyString
+  share_price: 1.5
+  volume: 1

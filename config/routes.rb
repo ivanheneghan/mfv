@@ -1,12 +1,11 @@
 Mfv::Application.routes.draw do
-  resources :bank_accounts
-
+  get "users/show"
   devise_for :users
-  root 'static_pages#index'
-
+  root 'static_pages#index'  
+  resources :shares
+  resources :bank_accounts
   resource :overview
-
-  resources :bank_accounts  
+  resources :users, only: :show
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

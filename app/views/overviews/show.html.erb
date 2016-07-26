@@ -5,9 +5,15 @@
   <br />
   Future value (including inflation):
   <br /><br /><br />
-
-  <% stock = StockQuote::Stock.quote("fb") %>
-  <%= stock.ask %>
+  
+  <% today = Date.today %>
+  <% d = Date.new(today.year, current_user.dob.month, current_user.dob.day) %>
+  <% age = d.year - current_user.dob.year - (d > today ? 1 : 0) %>
+  Current Age: <%= age %><br /><br />
+  
+  <label for="slider">Age</label>
+  <input type="range" id="slider" min="0" max="100" value="50" step="1" oninput="outputUpdate(value)">
+  <output for="slider" id="age">50</output>
   <br /><br /><br />
 
   <%= link_to 'Manage Bank Accounts', bank_accounts_path, :class => "btn btn-primary btn-md" %>

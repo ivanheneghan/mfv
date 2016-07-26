@@ -18,19 +18,22 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to(current_user ? overview_path : root_path) do %>
-          <%= image_tag("mfv_logo_small.png", :alt => "My Future Value") %>
+          <%= image_tag("pb.png", :alt => "My Future Value") %>
         <% end %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
         <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
+          <% if user_signed_in? %>            
+            <li><%= link_to 'My Profile', user_path(current_user) %></li>
             <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'About', root_path %></li>
           <% else %>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
             <li><%= link_to 'Sign up', new_user_registration_path %></li>
-          <% end %>          
+            <li><%= link_to 'About', root_path %></li>
+          <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -48,7 +51,7 @@
       <li><%= link_to 'Overview', overview_path %></li>
       <li><%= link_to 'Bank Accounts', bank_accounts_path %></li>
       <li><%= link_to 'Investments', '#' %></li>
-      <li><%= link_to 'Shares', '#' %></li>
+      <li><%= link_to 'Shares', shares_path %></li>
       <li><%= link_to 'Pension', '#' %></li>
     </ul>
   <% end %>
