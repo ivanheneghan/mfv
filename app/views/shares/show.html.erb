@@ -1,29 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  Company: <%= @share.company %><br /><br />
+  Ticker: <%= @share.ticker %><br /><br />
+  Volume: <%= @share.volume %><br /><br />
 
-<p>
-  <strong>Share:</strong>
-  <%= @share.share_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @share.name %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @share.company %>
-</p>
-
-<p>
-  <strong>Share price:</strong>
-  <%= @share.share_price %>
-</p>
-
-<p>
-  <strong>Volume:</strong>
-  <%= @share.volume %>
-</p>
-
-<%= link_to 'Edit', edit_share_path(@share) %> |
-<%= link_to 'Back', shares_path %>
+  <% stock = StockQuote::Stock.quote(@share.ticker) %>  
+  Stock Price: <%= stock.ask %><br /><br />
+  
+  <%= link_to 'Edit', edit_share_path(@share), class: 'btn btn-primary' %>
+  <%= link_to 'Destroy', share_path(@share), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %>
+</div>

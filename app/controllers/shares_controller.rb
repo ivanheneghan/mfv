@@ -1,39 +1,53 @@
 class SharesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_share, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @shares = Share.all
+    @shares = current_user.shares
     respond_with(@shares)
   end
 
   def show
-    respond_with(@share)
   end
 
   def new
-    @share = Share.new
-    respond_with(@share)
+    @share = Share.new    
   end
 
   def edit
   end
 
-  def create
-    @share = Share.new(share_params)
-    @share.save
-    respond_with(@share)
+def create        
+    if current_user.shares.create(share_params)
+      redirect_to shares_path
+    else
+      render :new, status: :unprocessable_entity
+    end    
   end
 
   def update
-    @share.update(share_params)
-    respond_with(@share)
+    if @share.user != current_user
+      return render text: 'Not Allowed', status: :forbidden
+    end
+    
+    if @share.update(share_params)
+      redirect_to shares_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @share.destroy
-    respond_with(@share)
+    if @share.user != current_user
+      return render text: 'Not Allowed', status: :forbidden
+    end 
+    if @share.destroy
+      redirect_to shares_path
+    else
+      redirect_to share_path(@share)
+    end
   end
 
   private
@@ -42,6 +56,6 @@ class SharesController < ApplicationController
     end
 
     def share_params
-      params.require(:share).permit(:share_id, :name, :company, :share_price, :volume)
+      params.require(:share).permit(:share_id, :company, :ticker, :volume)
     end
 end
