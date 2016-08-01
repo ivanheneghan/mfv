@@ -1,0 +1,9 @@
+<div id="summary">
+  Current value: <%= number_to_currency(@overview.current_value, :unit => "€") %>
+  <br />
+
+  Future value (not including inflation): <%= number_to_currency(@overview.future_value, :unit => "€") %>
+  <br />
+  Future value (including inflation): <%= number_to_currency(@overview.future_value_inflation, :unit => "€") %>
+  <br /><br /><br />
+</div>
