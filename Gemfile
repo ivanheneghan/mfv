@@ -59,3 +59,6 @@ gem 'devise', '>= 3.2.4'
 
 # Use stock_quote
 gem 'stock_quote'
+
+# Use simple_currency
+gem 'simple_currency'
