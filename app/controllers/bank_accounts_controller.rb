@@ -6,6 +6,9 @@ class BankAccountsController < ApplicationController
 
   def index
     @bank_accounts = current_user.bank_accounts
+
+
+
     respond_with(@bank_accounts)
   end
 

@@ -3,6 +3,7 @@ class OverviewsController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @overview = Overview.new(current_user, (session[:future_age].to_i - current_user.age)).to_hash
   end
 
   def update
